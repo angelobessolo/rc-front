@@ -22,6 +22,8 @@
               }
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-climbing-dot.css",
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
             "server": "src/main.server.ts",
@@ -80,11 +82,16 @@
               }
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-climbing-dot.css",
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "18e85fcf-cedd-424b-8cc0-9f3217754630"
   }
 }

@@ -1,0 +1,406 @@
+<div>
+  <div class="m-4">
+      
+    <div class="d-flex align-items-center mb-3 gap-2 w-100">
+      <mat-icon style="color: darkgreen;">school</mat-icon>
+      <h5 class="m-0" style="color: #005cbb;">EDITAR REGISTRO</h5>
+    </div>
+
+    <form [formGroup]="createStudentForm" class="mt-4 mb-2">
+      <div class="row">
+        <div class="col-12 mb-3">
+          <label style="color: #005cbb; font-weight: 500;">INFORMACIÓN PERSONAL</label>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Nombres</mat-label>
+            <input matInput type="text" formControlName="names">
+
+            <mat-error *ngIf="getErrorMessage('names')"> {{ getErrorMessage('names') }}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Apellidos</mat-label>
+            <input matInput type="text" formControlName="sureNames">
+
+            <mat-error *ngIf="getErrorMessage('sureNames')">
+              {{ getErrorMessage('sureNames') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Tipo de Documento</mat-label>
+            <mat-select formControlName="typeDocumentsId">
+              @for (typeDocument of typeDocuments; track $index) {
+                <mat-option [value]="typeDocument.id">
+                  {{ typeDocument.documentName }}
+                </mat-option>
+              }
+            </mat-select>
+
+            <mat-error *ngIf="getErrorMessage('typeDocumentsId')">
+              {{ getErrorMessage('typeDocumentsId') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Número de Documento</mat-label>
+            <input matInput type="number" formControlName="documentNumber">
+
+            <mat-error *ngIf="getErrorMessage('documentNumber')">
+              {{ getErrorMessage('documentNumber') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Lugar de Expedición</mat-label>
+            <input matInput type="text" formControlName="expeditionPlace">
+
+            <mat-error *ngIf="getErrorMessage('expeditionPlace')">
+              {{ getErrorMessage('expeditionPlace') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Edad</mat-label>
+            <input matInput type="number" formControlName="age" (input)="validateFieldNumberInput($event, 'age')">
+
+            <mat-error *ngIf="getErrorMessage('age')">
+              {{ getErrorMessage('age') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput type="text" formControlName="email">
+
+            <mat-error *ngIf="getErrorMessage('email')">
+              {{ getErrorMessage('email') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input matInput [matDatepicker]="pickera" formControlName="bornDate">
+            <mat-hint>MM/DD/AAAA</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="pickera"></mat-datepicker-toggle>
+            <mat-datepicker #pickera></mat-datepicker>
+
+            <mat-error *ngIf="getErrorMessage('bornDate')">
+              {{ getErrorMessage('bornDate') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Departamento Residencia</mat-label>
+            <input matInput type="text" formControlName="state">
+
+            <mat-error *ngIf="getErrorMessage('state')">
+              {{ getErrorMessage('state') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Ciudad Residencia</mat-label>
+            <input matInput type="text" formControlName="city">
+
+            <mat-error *ngIf="getErrorMessage('city')">
+              {{ getErrorMessage('city') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Barrio / Localidad</mat-label>
+            <input matInput type="text" formControlName="neighborhood">
+
+            <mat-error *ngIf="getErrorMessage('neighborhood')">
+              {{ getErrorMessage('neighborhood') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Dirección</mat-label>
+            <input matInput type="text" formControlName="address">
+
+            <mat-error *ngIf="getErrorMessage('address')">
+              {{ getErrorMessage('address') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Número de Whatsapp</mat-label>
+            <input matInput type="number" formControlName="phoneNumber" (input)="validateFieldNumberInput($event, 'phoneNumber')">
+
+            <mat-error *ngIf="getErrorMessage('phoneNumber')">
+              {{ getErrorMessage('phoneNumber') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Número de Contacto 2</mat-label>
+            <input matInput type="number" formControlName="secondPhoneNumber" (input)="validateFieldNumberInput($event, 'secondPhoneNumber')">
+         
+            <mat-error *ngIf="getErrorMessage('secondPhoneNumber')">
+              {{ getErrorMessage('secondPhoneNumber') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 mb-3">
+          <label style="color: #005cbb; font-weight: 500;">INFORMACIÓN ACADEMICA</label>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Tipo de Programa</mat-label>
+            <mat-select (selectionChange)="selectTypeProgram($event.value)" formControlName="typeProgramsId">
+              @for (typeProgram of typePrograms; track $index) {
+                <mat-option [value]="typeProgram.id">
+                  {{ typeProgram.type }}
+                </mat-option>
+              }
+            </mat-select>
+
+            <mat-error *ngIf="getErrorMessage('typeProgramsId')">
+              {{ getErrorMessage('typeProgramsId') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        @if (showFields()) {
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Modalidad</mat-label>
+              <mat-select (selectionChange)="selectModality($event.value)" formControlName="modalityId">
+                @for (modality of modalities; track $index) {
+                  <mat-option [value]="modality.id">
+                    {{ modality.modalityName }}
+                  </mat-option>
+                }
+              </mat-select>
+
+              <mat-error *ngIf="getErrorMessage('modalityId')">
+                {{ getErrorMessage('modalityId') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        }
+
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Programa Asociado</mat-label>
+            <mat-select (selectionChange)="selectProgram($event.value)" formControlName="programsId">
+              @for (program of filteredPrograms; track $index) {
+                <mat-option [value]="program.id">
+                  {{ program.programName }}
+                </mat-option>
+              }
+            </mat-select>
+
+            <mat-error *ngIf="getErrorMessage('programsId')">
+              {{ getErrorMessage('programsId') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        @if (showProgram()) {
+          <!-- <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Programa Técnico Asociado</mat-label>
+              <mat-select (selectionChange)="selectProgram($event.value)" formControlName="programsId">
+                @for (programs of programs; track $index) {
+                  <mat-option [value]="programs.id">
+                    {{ programs.programName }}
+                  </mat-option>
+                }
+              </mat-select>
+
+              <mat-error *ngIf="getErrorMessage('programsId')">
+                {{ getErrorMessage('programsId') }}
+              </mat-error>
+            </mat-form-field>
+          </div> -->
+        }
+        
+
+        @if (showFields()) {
+          <!-- <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Modalidad</mat-label>
+              <mat-select (selectionChange)="selectModality($event.value)" formControlName="modalityId">
+                @for (modality of modalities; track $index) {
+                  <mat-option [value]="modality.id">
+                    {{ modality.modalityName }}
+                  </mat-option>
+                }
+              </mat-select>
+
+              <mat-error *ngIf="getErrorMessage('modalityId')">
+                {{ getErrorMessage('modalityId') }}
+              </mat-error>
+            </mat-form-field>
+          </div> -->
+          
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Grupo</mat-label>
+              <mat-select formControlName="groupsId">
+                @for (group of groups; track $index) {
+                  <mat-option [value]="group.id">
+                    {{ group.groupName }}
+                  </mat-option>
+                }
+              </mat-select>
+
+              <mat-error *ngIf="getErrorMessage('groupsId')">
+                {{ getErrorMessage('groupsId') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Año de Graduación</mat-label>
+              <input matInput type="number" formControlName="graduationYear" (input)="validateFieldNumberInput($event, 'graduationYear')">
+            
+              <mat-error *ngIf="getErrorMessage('graduationYear')">
+                {{ getErrorMessage('graduationYear') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Asesor</mat-label>
+              <input matInput type="text" formControlName="agent">
+
+              <mat-error *ngIf="getErrorMessage('agent')">
+                {{ getErrorMessage('agent') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          @if (showCycle()) {
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+              <div>
+                <mat-label style="color: #005cbb;">Selección de Ciclos academicos</mat-label>
+              </div>
+              <div class="mt-3 mb-3">
+                <button mat-raised-button class="addCycle" style="color: darkgreen;" (click)="addCycle()" [disabled]="getAvailableCycles().length === 0 || getAvailableContents().length === 0 || cyclesContent.controls.length === availableCycles.length">
+                  Agregar Ciclo
+                </button>
+              </div>
+
+              <div formArrayName="cyclesContent">
+                @for (group of cyclesContent.controls; track $index; ) {
+                  <div [formGroupName]="$index" class="row">
+                    <div class="col-10 col-sm-4 mb-3">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Ciclo</mat-label>
+                        <mat-select formControlName="cyclesId">
+                          <mat-option *ngFor="let c of getAvailableCycles($index)" [value]="c.id">{{ c.cycleNumber }}</mat-option>
+                        </mat-select>
+
+                        <mat-error *ngIf="group.get('cyclesId')?.touched && group.get('cyclesId')?.hasError('required')">
+                          El ciclo es obligatorio
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-10 col-sm-6 mb-3">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Contenido</mat-label>
+                        <mat-select formControlName="contentId">
+                          <mat-option *ngFor="let c of getAvailableContents($index)" [value]="c.id">
+                            {{ c.contentDescription }}
+                          </mat-option>
+                        </mat-select>
+
+                        <mat-error *ngIf="group.get('contentId')?.touched && group.get('contentId')?.hasError('required')">
+                          El contenido es obligatorio
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-2 mb-3">
+                      <button mat-icon-button type="button" style="color: red;" (click)="removeCycle($index)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
+                    
+                  </div>
+                }
+              </div>
+            </div>
+          }
+          
+
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+            <app-multi-select-search
+              [items]="selectDocumentList"
+              [label]="'Documentos Entregados'"
+              [control]="documentsControl"
+              (selectionChange)="onDocumentsChanged($event)">
+            </app-multi-select-search>
+
+            <p><strong>Documentos seleccionados:</strong></p>
+            <div>
+              @for (bank of bankMultiCtrl.value; track $index) {
+                <div><mat-icon class="mat-18 text-success" style="height: 20px; width: 20px;">check</mat-icon> {{ bank.description }}</div>
+              }
+            </div>
+          </div>
+
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Observación</mat-label>
+              <textarea matInput formControlName="observation"></textarea>
+
+              <mat-error *ngIf="getErrorMessage('observation')">
+                {{ getErrorMessage('observation') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        }
+      </div>
+    </form>
+      
+    <div class="d-flex justify-content-end gap-2">
+      <button mat-button color="primary">
+        Cancelar
+      </button>
+      <button mat-button [disabled]="!createStudentForm.valid" (click)="updateStudentProgram()">
+        Guardar
+      </button>
+    </div>
+  </div>
+</div>

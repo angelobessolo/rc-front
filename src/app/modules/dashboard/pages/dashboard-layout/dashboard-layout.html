@@ -1,0 +1,13 @@
+<app-tool-bar></app-tool-bar>
+
+<div class="container">
+    <div class="d-flex gap-2 mt-5">
+        <a mat-flat-button routerLink="registered-student-list" routerLinkActive="active-link">Listado de registros</a>
+        <a mat-flat-button routerLink="register-student" routerLinkActive="active-link">Registrar Estudiante</a>
+        <!-- <a mat-flat-button routerLink="edit/:id" routerLinkActive="active-link" disabled="true">Editar</a> -->
+    </div>
+
+    <div class="mt-5 mb-5">
+        <router-outlet></router-outlet>
+    </div>
+</div>

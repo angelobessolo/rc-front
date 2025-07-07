@@ -1,0 +1,7 @@
+a {
+  background-color: #005cbb73 !important; /* semitransparente */
+}
+
+.active-link {
+  background-color: #005cbb !important;
+}

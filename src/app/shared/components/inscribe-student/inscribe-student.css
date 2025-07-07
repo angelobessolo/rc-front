@@ -1,0 +1,16 @@
+.custom-icon {
+  color: #3f51b5; /* Azul Material por ejemplo */
+}
+
+.example-month-picker .mat-calendar-period-button {
+  pointer-events: none;
+}
+
+.example-month-picker .mat-calendar-arrow {
+  display: none;
+}
+
+.addCycle:hover{
+  color: #faf9fd !important;
+  background-color: darkgreen;
+}

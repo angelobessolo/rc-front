@@ -1,0 +1,18 @@
+<mat-form-field appearance="outline" class="w-100">
+  <mat-label>{{ label() }}</mat-label>
+  <mat-select [formControl]="control()" placeholder="Buscar..." multiple >
+    <mat-option>
+      <ngx-mat-select-search
+        [formControl]="filterCtrl"
+        placeholderLabel="Buscar..."
+        noEntriesFoundLabel="'No se encontraron resultados'">
+      </ngx-mat-select-search>
+    </mat-option>
+
+    @for (item of filteredItems(); track $index) {
+        <mat-option [value]="item">
+            {{ item.description }}
+        </mat-option>
+    }
+  </mat-select>
+</mat-form-field>

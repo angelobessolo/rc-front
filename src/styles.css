@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+@import  'ngx-toastr/toastr';
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #eff3f9;
+  font-family: "Roboto", sans-serif;
+}
+
+h3 {
+  font-weight: 600 !important;
+}
+
+/* Personalizar estilos de Angular Material */
+.mat-mdc-text-field-wrapper {
+  background-color: transparent !important;
+}
+
+.users-table thead{
+  background-color: darkgreen !important;
+}
+
+thead > tr{
+  color: white !important;
+}
+
+
+/* Oculta las flechas en inputs type="number" para Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Oculta las flechas en Firefox */
+/* input[type="number"] {
+  -moz-appearance: textfield;
+} */
+  

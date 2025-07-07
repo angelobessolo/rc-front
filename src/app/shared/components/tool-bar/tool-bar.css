@@ -1,0 +1,9 @@
+mat-toolbar{
+  box-shadow: -1px 11px 15px -2px rgba(0,0,0,0.67);
+  -webkit-box-shadow: -1px 11px 15px -2px rgba(0,0,0,0.67);
+  -moz-box-shadow: -1px 11px 15px -2px rgba(0,0,0,0.67);
+}
+
+.darkgreen{
+  color: darkgreen;
+}

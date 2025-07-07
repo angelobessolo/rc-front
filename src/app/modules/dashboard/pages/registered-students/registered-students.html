@@ -1,0 +1,10 @@
+<!-- General List -->
+<app-general-table
+  [pathService]="pathService"
+  (dataSelected) ="dataSelected($event)"
+  [reload]="reload()"
+></app-general-table>
+
+@if(showButton()){
+  <app-float-button [buttonActions]="buttonActions" (eventAction) ="eventAction($event)"></app-float-button>
+}
