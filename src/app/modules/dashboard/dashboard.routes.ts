@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { isAuthenticatedGuard } from '../auth/guards/is-authenticated.guard';
+import { RenderMode } from '@angular/ssr';
 
 // Validar bien las rutas hijas ya que acadeberia redirigir a otras routas hijas para usuarios, asesores, etc 
 export const DashboardRoutes: Routes = [

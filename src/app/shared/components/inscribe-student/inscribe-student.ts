@@ -244,7 +244,9 @@ export class InscribeStudent implements OnInit{
       payload.documentNumber = Number(studentForm.documentNumber);
       payload.age = Number(studentForm.age);
       payload.email = studentForm.email;
-      payload.bornDate = studentForm.bornDate;
+      const date = new Date(studentForm.bornDate);
+      const formattedDate = date.toISOString().split('T')[0];
+      payload.bornDate = formattedDate;
       payload.state = studentForm.state;
       payload.city = studentForm.city;
       payload.neighborhood = studentForm.neighborhood;
