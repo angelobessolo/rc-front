@@ -65,6 +65,7 @@ export class InscribeStudent implements OnInit{
   public typePrograms: any[] = [];
   public programs: any[] = [];
   public filteredPrograms: any[] = [];
+  public filteredTechPrograms: any[] = [];
   public modalities: any[] = [];
   public availableCycles: any = [];
   public availableContents: any = [];
@@ -171,6 +172,7 @@ export class InscribeStudent implements OnInit{
       typeProgramsId:    ['', Validators.required],
       modalityId:        [''],  
       programsId:        ['', Validators.required],
+      cyclesProgramsId:  [''],
       groupsId:          [''],
       graduationYear:    [''],
       agent:             [''],
@@ -204,6 +206,10 @@ export class InscribeStudent implements OnInit{
       if (typeProgramId && modalityId){
         this.filteredPrograms = this.programs.filter(program => {
           return program.typeModality.id === modalityId && program.typeProgram.id === typeProgramId;
+        })
+
+        this.filteredTechPrograms = this.programs.filter(program => {
+          return program.typeModality.id === modalityId && program.typeProgram.id === 2;
         })
       }
     });
@@ -265,9 +271,7 @@ export class InscribeStudent implements OnInit{
       if (studentForm.graduationYear !== '') {
         payload.graduationYear = Number(studentForm.graduationYear);
       }
-      // if (studentForm.programsId !== '') {
-      //   payload.programsId = Number(studentForm.programsId);
-      // }
+      
       if (studentForm.groupsId !== '') {
         payload.groupsId = Number(studentForm.groupsId);
       }
@@ -279,7 +283,6 @@ export class InscribeStudent implements OnInit{
       if (studentForm.observation !== '') {
         payload.observation = studentForm.observation;
       }
-    
      
       this.adminService.createStudentProgram(payload).subscribe({
         next: (response: any) => {
@@ -346,16 +349,6 @@ export class InscribeStudent implements OnInit{
   public initializeField(field: string, value: any): void {
     this.createStudentForm.controls[field]?.setValue(value);
   }
-
-  // onDocumentsChanged(selectedDocs: any) {
-  //   const value = selectedDocs.value;
-  //   console.log('Documentos seleccionados:', value);
-  
-  //   this.createStudentForm.controls['documents'].setValue(value)
-  //   this.bankMultiCtrl = value;
-
-  //   console.log('Documentos seleccionados:', selectedDocs, this.bankMultiCtrl);
-  // }
 
   onDocumentsChanged(event: any) {
     const value = event.value;
@@ -584,6 +577,7 @@ export class InscribeStudent implements OnInit{
       next: (response: any) => {
         this.programs = response.data.programs;
         this.filteredPrograms = this.programs;
+        this.filteredTechPrograms = this.programs.filter( (program) => program.typeProgram.id === 2 )
       },
       error: err => {
 
