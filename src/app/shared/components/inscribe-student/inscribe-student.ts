@@ -321,7 +321,8 @@ export class InscribeStudent implements OnInit{
   }
 
   public selectTypeProgram(event: any): void {
-
+    this.initializeField('cyclesProgramsId', '');
+    this.showCycle.set(false);
   }
   
   public selectModality(event: any): void {

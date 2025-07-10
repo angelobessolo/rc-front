@@ -310,6 +310,23 @@
           </div>
 
           @if (showCycle()) {
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Programa Técnico Ciclos</mat-label>
+                <mat-select formControlName="cyclesProgramsId">
+                  @for (program of filteredPrograms; track $index) {
+                    <mat-option [value]="program.id">
+                      {{ program.programName }}
+                    </mat-option>
+                  }
+                </mat-select>
+
+                <mat-error *ngIf="getErrorMessage('cyclesProgramsId')">
+                  {{ getErrorMessage('cyclesProgramsId') }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
               <div>
                 <mat-label style="color: #005cbb;">Selección de Ciclos academicos</mat-label>

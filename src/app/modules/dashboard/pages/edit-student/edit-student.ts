@@ -63,6 +63,7 @@ export class EditStudent implements OnInit, AfterViewInit{
   public typePrograms: any[] = [];
   public programs: any[] = [];
   public filteredPrograms: any[] = [];
+  public filteredTechPrograms: any[] = [];
   public modalities: any[] = [];
   public availableCycles: any = [];
   public availableContents: any = [];
@@ -171,6 +172,7 @@ export class EditStudent implements OnInit, AfterViewInit{
       typeProgramsId:    ['', Validators.required],
       modalityId:        [''],  
       programsId:        ['', Validators.required],
+      cyclesProgramsId:  [''],
       groupsId:          [''],
       graduationYear:    [''],
       agent:             [''],
@@ -205,6 +207,10 @@ export class EditStudent implements OnInit, AfterViewInit{
           return program.typeModality.id === modalityId && program.typeProgram.id === typeProgramId;
         })
       }
+
+      this.filteredTechPrograms = this.programs.filter(program => {
+        return program.typeModality.id === modalityId && program.typeProgram.id === 2;
+      })
     });
 
     
@@ -324,7 +330,8 @@ export class EditStudent implements OnInit, AfterViewInit{
   }
   
   public selectTypeProgram(event: any): void {
-
+    this.initializeField('cyclesProgramsId', '');
+    this.showCycle.set(false);
   }
     
   public selectModality(event: any): void {
@@ -590,6 +597,8 @@ export class EditStudent implements OnInit, AfterViewInit{
       next: (response: any) => {
         this.programs = response.data.programs;
         this.filteredPrograms = this.programs;
+        this.filteredTechPrograms = this.programs.filter( (program) => program.typeProgram.id === 2 )
+
       },
       error: err => {
 
@@ -683,7 +692,13 @@ export class EditStudent implements OnInit, AfterViewInit{
         }));
       });
     }
-      
+
+    if (student?.cyclesProgramsId) {
+      this.createStudentForm.patchValue({
+        cyclesProgramsId: student?.cyclesProgramsId
+      })
+    }
+
     this.createStudentForm.patchValue({
       names: student.names,
       sureNames: student.sureNames,
@@ -707,12 +722,9 @@ export class EditStudent implements OnInit, AfterViewInit{
       agent: student?.agent,
       documents: selectedDocs ?? null,
       observation: student?.observation,
-      // cyclesContent: cyclesContent
     });
 
     // Actualiza el control independiente para el multi-select
-    // this.documentsControl.setValue(docs);
-
     // Si tienes ciclos cargados:
     cyclesArray.clear();
     if (student.studentFormsCycles && Array.isArray(student.studentFormsCycles)) {
